@@ -38,7 +38,7 @@ const Gudang = () => {
           height={1125 / 4}
           alt="Logo"
         />
-        <h1 className="text-3xl">Welcome To Gudang Page</h1>
+        <h1 className="text-3xl">Selamat Datang Di Halaman Gudang</h1>
         {gudangName && <p>Gudang: {gudangName}</p>}
       </div>
     {/* <div className="flex mt-1 justify-center items-center h-screen"> */}

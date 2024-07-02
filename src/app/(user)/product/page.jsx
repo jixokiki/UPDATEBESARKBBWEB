@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import CardItem3 from "@/components/CardItem3";
+import NavbarUser from "@/components/NavbarUser";
 
 const Product = () => {
   const { user, userProfile } = useAuth();
@@ -117,7 +118,7 @@ const Product = () => {
 
   return (
     <div>
-      <Navbar />
+      <NavbarUser />
       <div className="p-8 md:p-24 mt-10">
         <div className="flex justify-between mb-10">
           <h2 className="text-3xl mb-3">All Products</h2>

@@ -32,7 +32,7 @@ const Admin = () => {
           height={1125 / 4}
           alt="Logo"
         />
-        <h1 className="text-3xl">Welcome To Marketing Page</h1>
+        <h1 className="text-3xl">Selamat Datang Di Halaman Marketing</h1>
         {adminName && <p>Marketing: {adminName}</p>}
       </div>
     </div>

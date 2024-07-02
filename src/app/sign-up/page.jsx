@@ -368,9 +368,9 @@ const SignUp = () => {
           onSubmit={handleSubmit}
           className="max-w-xl mx-auto rounded-xl md:border p-8 md:shadow-lg"
         >
-          <h2 className="text-center text-2xl font-semibold mb-10">Sign Up</h2>
+          <h2 className="text-center text-2xl font-semibold mb-10">Masuk</h2>
           <div className="mb-4">
-            <label className="block mb-1">Full Name</label>
+            <label className="block mb-1">Nama Lengkap</label>
             <input
               type="text"
               name="fullName"
@@ -394,7 +394,7 @@ const SignUp = () => {
             {errors.email && <p className="text-red-500">{errors.email}</p>}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Password</label>
+            <label className="block mb-1">Kata Sandi</label>
             <div className="flex items-center justify-between gap-3 border border-gray-300 mt-1 p-2 w-full rounded-md focus:ring focus:ring-blue-200">
               <input
                 type={showPassword ? "text" : "password"}
@@ -412,7 +412,7 @@ const SignUp = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Confirm Password</label>
+            <label className="block mb-1">Konfirmasi Kata Sandi</label>
             <input
               type="password"
               name="confirmPassword"
@@ -425,7 +425,7 @@ const SignUp = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Contact</label>
+            <label className="block mb-1">Kontak</label>
             <input
               type="text"
               name="contact"
@@ -436,7 +436,7 @@ const SignUp = () => {
             {errors.contact && <p className="text-red-500">{errors.contact}</p>}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Address</label>
+            <label className="block mb-1">Alamat</label>
             <input
               type="text"
               name="address"
@@ -462,12 +462,12 @@ const SignUp = () => {
             } transition-all duration-300 hover:bg-gray-900 hover:text-white px-6 py-4 rounded w-full`}
             disabled={isLoading}
           >
-            {isLoading ? "Signing Up..." : "Sign Up"}
+            {isLoading ? "Melakukan Pendaftaran..." : "Daftar"}
           </button>
           <p className="mt-10">
-            Already have an account?{" "}
+            Sudah Mempunyai Akun?{" "}
             <Link href={"/sign-in"} className="text-indigo-500 hover:underline">
-              Sign in here
+              Masuk Di Sini
             </Link>
           </p>
         </form>

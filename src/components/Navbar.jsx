@@ -17,10 +17,10 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-white flex justify-between items-center px-4 md:px-8 w-full md:w-11/12 h-20 shadow-md mx-auto rounded-none md:rounded-2xl border fixed top-0 md:top-5 left-1/2 -translate-x-1/2 z-40">
-        <h1 className="text-3xl font-bold text-gray-900">Customer</h1>
-        <div className="block md:hidden" onClick={toggleMenu}>
+        <h1 className="text-3xl font-bold text-gray-900">KBB</h1>
+        {/* <div className="block md:hidden" onClick={toggleMenu}>
           <FaBars size={35} />
-        </div>
+        </div> */}
         <ul
           className={`text-lg font-semibold text-gray-900 hidden md:flex md:items-center`}
         >
@@ -29,7 +29,7 @@ const Navbar = () => {
               href={"/"}
               className="px-4 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
             >
-              Dashboard
+              Halaman Utama
             </Link>
           </li>
           <li className="md:mr-3">
@@ -37,7 +37,7 @@ const Navbar = () => {
               href={"/about"}
               className="px-4 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
             >
-              Product
+              Produk
             </Link>
           </li>
           {/* {user && (
@@ -50,7 +50,7 @@ const Navbar = () => {
               </Link>
             </li>
           )} */}
-          {user && (
+          {/* {user && (
             <li className="md:mr-3">
               <Link
                 href={"/desain"}
@@ -59,7 +59,7 @@ const Navbar = () => {
                 Pesan
               </Link>
             </li>
-          )}
+          )} */}
           {/* <li className="md:mr-3">
             <Link
               href={"/service"}
@@ -68,14 +68,14 @@ const Navbar = () => {
               Service
             </Link>
           </li> */}
-          <li className="md:mr-3">
+          {/* <li className="md:mr-3">
             <Link
               href={"/payment"}
               className="px-4 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
             >
-              Payment Road
+              Bukti Pembayaran
             </Link>
-          </li>
+          </li> */}
           {/* <li className="md:mr-3">
             <Link
               href={"/contact"}
@@ -96,7 +96,7 @@ const Navbar = () => {
                   href={"/sign-up"}
                   className="px-4 py-3 transition-all duration-500 bg-gray-200 hover:bg-zinc-900 rounded hover:text-white"
                 >
-                  Sign Up
+                  Daftar
                 </Link>
               </li>
               <li>
@@ -104,7 +104,7 @@ const Navbar = () => {
                   href={"/sign-in"}
                   className="px-4 py-3 transition-all duration-500 bg-teal-500 text-white hover:bg-teal-800 rounded hover:text-white"
                 >
-                  Sign In
+                  Masuk
                 </Link>
               </li>
             </>
@@ -115,7 +115,7 @@ const Navbar = () => {
                 onClick={handleLogout}
                 className="px-4 py-3 transition-all duration-500 bg-teal-500 text-white hover:bg-teal-800 rounded hover:text-white"
               >
-                Logout
+                Keluar
               </Link>
             </li>
           )}
@@ -129,21 +129,21 @@ const Navbar = () => {
         }`}
       >
         <li className="md:mr-3">
-          <Link href={"/"}>Dashboard</Link>
+          <Link href={"/"}>Halaman Utama</Link>
         </li>
         <li className="md:mr-3">
-          <Link href={"/about"}>Product</Link>
+          <Link href={"/about"}>Produk</Link>
         </li>
         {/* {user && (
           <li className="md:mr-3">
             <Link href={"/product"}>Product</Link>
           </li>
         )} */}
-        {user && (
+        {/* {user && (
           <li className="md:mr-3">
             <Link href={"/desain"}>Paddy</Link>
           </li>
-        )}
+        )} */}
         {/* <li className="md:mr-3">
           <Link href={"/service"}>Service</Link>
         </li> */}
@@ -162,7 +162,7 @@ const Navbar = () => {
                 href={"/sign-up"}
                 className="transition-all duration-500  rounded hover:text-white"
               >
-                Sign Up
+                Daftar
               </Link>
             </li>
             <li className="w-full bg-teal-100 py-3 rounded">
@@ -170,7 +170,7 @@ const Navbar = () => {
                 href={"/sign-in"}
                 className="transition-all duration-500  rounded hover:text-white"
               >
-                Sign In
+                Masuk
               </Link>
             </li>
           </>
@@ -181,7 +181,7 @@ const Navbar = () => {
               onClick={handleLogout}
               className="transition-all duration-500  rounded hover:text-white"
             >
-              Logout
+              Keluar
             </Link>
           </li>
         )}

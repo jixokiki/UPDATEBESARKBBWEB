@@ -1154,21 +1154,287 @@
 // export default Purchase;
 
 
-"use client"
+//CODE FIX BANGET
+// "use client"
+// import useAuth from "@/app/hooks/useAuth";
+// import Footer from "@/components/Footer";
+// import Navbar from "@/components/Navbar";
+// import { db, storage } from "@/firebase/firebase";
+// import {
+//   collection,
+//   doc,
+//   onSnapshot,
+//   serverTimestamp,
+//   setDoc,
+//   updateDoc,
+//   query,
+//   where,
+//   getDocs,
+// } from "firebase/firestore";
+// import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+// import { useRouter } from "next/navigation";
+// import React, { useEffect, useState } from "react";
+
+// const Purchase = () => {
+//   const { user, userProfile } = useAuth();
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     if (user && userProfile.role === "admin") {
+//       router.push("/admin");
+//     }
+//   }, [user, userProfile, router]);
+
+//   const [file, setFile] = useState(null);
+//   const [percentage, setPercentage] = useState(null);
+//   const [data, setData] = useState([]);
+//   const [namaProduct, setNamaProduct] = useState(""); // State untuk nama produk
+//   const [address, setAddress] = useState(""); // State untuk alamat pengiriman
+//   const [selectedItems, setSelectedItems] = useState([]); // State untuk menyimpan item yang dipilih
+
+//   useEffect(() => {
+//     const unsub = onSnapshot(
+//       collection(db, "userRequestOrder"),
+//       (snapshot) => {
+//         let list = [];
+//         snapshot.docs.forEach((doc) => {
+//           list.push({ id: doc.id, ref: doc.ref, ...doc.data() });
+//         });
+//         setData(list);
+
+//         // Set nilai awal untuk nama produk dan alamat berdasarkan data pertama dari snapshot
+//         if (list.length > 0) {
+//           setNamaProduct(list[0].namaProduct || ""); // Mengambil nilai nama produk
+//           setAddress(list[0].address || ""); // Mengambil nilai alamat pengiriman
+//         }
+//       },
+//       (error) => {
+//         console.log(error);
+//       }
+//     );
+
+//     return () => {
+//       unsub();
+//     };
+//   }, []);
+
+//   const uploadFile = async (file) => {
+//     return new Promise((resolve, reject) => {
+//       const storageRef = ref(
+//         storage,
+//         "userRequestOrder/" +
+//           new Date().getTime() +
+//           file.name.replace(" ", "%20") +
+//           "KBB"
+//       );
+//       const uploadTask = uploadBytesResumable(storageRef, file);
+
+//       uploadTask.on(
+//         "state_changed",
+//         (snapshot) => {
+//           const progress =
+//             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//           setPercentage(progress);
+//           switch (snapshot.state) {
+//             case "paused":
+//               console.log("Upload is paused");
+//               break;
+//             case "running":
+//               console.log("Upload is running");
+//               break;
+//           }
+//         },
+//         (error) => {
+//           reject(error);
+//         },
+//         () => {
+//           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+//             resolve(downloadURL);
+//           });
+//         }
+//       );
+//     });
+//   };
+
+//   const handleCheckboxChange = (itemId) => {
+//     const selectedIndex = selectedItems.indexOf(itemId);
+//     let newSelected = [];
+
+//     if (selectedIndex === -1) {
+//       newSelected = newSelected.concat(selectedItems, itemId);
+//     } else if (selectedIndex === 0) {
+//       newSelected = newSelected.concat(selectedItems.slice(1));
+//     } else if (selectedIndex === selectedItems.length - 1) {
+//       newSelected = newSelected.concat(selectedItems.slice(0, -1));
+//     } else if (selectedIndex > 0) {
+//       newSelected = newSelected.concat(
+//         selectedItems.slice(0, selectedIndex),
+//         selectedItems.slice(selectedIndex + 1)
+//       );
+//     }
+
+//     setSelectedItems(newSelected);
+//   };
+
+//   const handleUploadPayment = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       const downloadURL = file ? await uploadFile(file) : null;
+
+//       // Update status and image for selected items
+//       for (const itemId of selectedItems) {
+//         const selectedData = data.find((item) => item.id === itemId);
+
+//         if (selectedData) {
+//           await updateDoc(selectedData.ref, {
+//             status: "Bukti Payment Telah Dikirim",
+//             image: downloadURL,
+//           });
+//         }
+//       }
+
+//       alert("Upload bukti pembayaran berhasil!");
+//       setFile(null);
+//       setSelectedItems([]);
+//     } catch (error) {
+//       console.error("Error uploading payment proof:", error);
+//     }
+//   };
+
+//   return (
+//     <div className="w-[100%] mx-auto mt-32">
+//       <Navbar />
+//       <div className="w-[90%] mx-auto mt-10">
+//         <h2 className="text-2xl font-semibold mb-4">Status Pemesanan</h2>
+//         <table className="table-auto w-full">
+//           <thead>
+//             <tr>
+//               <th>Select</th>
+//               <th>Product Name</th>
+//               <th>Delivery Address</th>
+//               <th>Contact</th>
+//               <th>Kategori Kemasan</th>
+//               <th>Jumlah Kemasan</th>
+//               <th>Harga</th>
+//               <th>Tanggal Kirim</th>
+//               <th>Status</th>
+//               <th>Time Stamp</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {data.map((item) => (
+//               <tr key={item.id}>
+//                 <td>
+//                   <input
+//                     type="checkbox"
+//                     checked={selectedItems.indexOf(item.id) !== -1}
+//                     onChange={() => handleCheckboxChange(item.id)}
+//                   />
+//                 </td>
+//                 <td>{item.namaProduct}</td>
+//                 <td>{item.address}</td>
+//                 <td>{item.contact}</td>
+//                 <td>{item.packaging}</td>
+//                 <td>{item.stock}</td>
+//                 <td>{item.price}</td>
+//                 <td>{item.deliveryDate}</td>
+//                 <td>{item.status}</td>
+//                 <td>{item.timestamp?.toDate().toString()}</td>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//       <div className="w-[90%] mx-auto mt-10">
+//         <h2 className="text-2xl font-semibold mb-5">Upload Payment Proof</h2>
+//         <div className="mb-5 text-lg">No. Rekening: 59796486447</div>
+//         <form onSubmit={handleUploadPayment}>
+//           <div className="py-4">
+//             <div className="flex flex-col gap-3 mb-3">
+//               <label htmlFor="image">Payment Proof Image</label>
+//               <input
+//                 type="file"
+//                 name="image"
+//                 id="image"
+//                 required
+//                 onChange={(e) => setFile(e.target.files[0])}
+//               />
+//               {percentage !== null && percentage < 100 ? (
+//                 <progress
+//                   className="progress progress-accent w-56"
+//                   value={percentage}
+//                   max="100"
+//                 ></progress>
+//               ) : (
+//                 percentage === 100 && (
+//                   <div className="text-green-500 font-semibold">
+//                     Upload Completed
+//                   </div>
+//                 )
+//               )}
+//             </div>
+//           </div>
+//           {/* Tampilkan item yang dipilih di sini */}
+//           {selectedItems.length > 0 && (
+//             <div className="mb-5">
+//               <h3 className="text-xl font-semibold mb-2">Selected Items:</h3>
+//               <ul>
+//                 {selectedItems.map((itemId) => {
+//                   const selectedData = data.find((item) => item.id === itemId);
+//                   if (selectedData) {
+//                     return (
+//                       <li key={selectedData.id}>
+//                         <p>Product Name: {selectedData.namaProduct}</p>
+//                         <p>Delivery Address: {selectedData.address}</p>
+//                         <p>Contact: {selectedData.contact}</p>
+//                         <p>Kategori Kemasan: {selectedData.packaging}</p>
+//                         <p>Jumlah Kemasan: {selectedData.stock}</p>
+//                         <p>Tanggal Pemesanan: {selectedData.timestamp?.toDate().toString()}</p> {/* Update this line */}
+//                       </li>
+//                     );
+//                   }
+//                   return null;
+//                 })}
+//               </ul>
+//             </div>
+//           )}
+//           <div className="w-[100%] mx-auto mt-7">
+//             <p>
+//               Note: Upload bukti payment ketika status berubah menjadi pembelian
+//               di acc,
+//             </p>
+//             <p>
+//               Pembayaran bisa dilakukan dengan cara transfer sesuai dengan harga
+//               yang tertera di atas kolom Approved Purchases
+//             </p>
+//           </div>
+//           <div className="modal-action">
+//             <button className="btn btn-primary" type="submit">
+//               Upload Payment Proof
+//             </button>
+//           </div>
+//         </form>
+//       </div>
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default Purchase;
+
+
+"use client";
 import useAuth from "@/app/hooks/useAuth";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import NavbarUser from "@/components/NavbarUser";
 import { db, storage } from "@/firebase/firebase";
 import {
   collection,
   doc,
   onSnapshot,
-  serverTimestamp,
-  setDoc,
   updateDoc,
-  query,
-  where,
-  getDocs,
 } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useRouter } from "next/navigation";
@@ -1187,9 +1453,7 @@ const Purchase = () => {
   const [file, setFile] = useState(null);
   const [percentage, setPercentage] = useState(null);
   const [data, setData] = useState([]);
-  const [namaProduct, setNamaProduct] = useState(""); // State untuk nama produk
-  const [address, setAddress] = useState(""); // State untuk alamat pengiriman
-  const [selectedItems, setSelectedItems] = useState([]); // State untuk menyimpan item yang dipilih
+  const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -1200,12 +1464,6 @@ const Purchase = () => {
           list.push({ id: doc.id, ref: doc.ref, ...doc.data() });
         });
         setData(list);
-
-        // Set nilai awal untuk nama produk dan alamat berdasarkan data pertama dari snapshot
-        if (list.length > 0) {
-          setNamaProduct(list[0].namaProduct || ""); // Mengambil nilai nama produk
-          setAddress(list[0].address || ""); // Mengambil nilai alamat pengiriman
-        }
       },
       (error) => {
         console.log(error);
@@ -1288,7 +1546,7 @@ const Purchase = () => {
         if (selectedData) {
           await updateDoc(selectedData.ref, {
             status: "Bukti Payment Telah Dikirim",
-            image: downloadURL,
+            image: downloadURL, // Save image URL
           });
         }
       }
@@ -1303,22 +1561,23 @@ const Purchase = () => {
 
   return (
     <div className="w-[100%] mx-auto mt-32">
-      <Navbar />
+      <NavbarUser />
       <div className="w-[90%] mx-auto mt-10">
         <h2 className="text-2xl font-semibold mb-4">Status Pemesanan</h2>
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th>Select</th>
-              <th>Product Name</th>
-              <th>Delivery Address</th>
-              <th>Contact</th>
+              <th>Pilih</th>
+              <th>Nama Beras</th>
+              <th>Alamat Pengiriman</th>
+              <th>Kontak</th>
               <th>Kategori Kemasan</th>
               <th>Jumlah Kemasan</th>
               <th>Harga</th>
               <th>Tanggal Kirim</th>
               <th>Status</th>
-              <th>Time Stamp</th>
+              <th>Tanggal Pemesanan</th>
+              <th>Bukti Pembayaran</th> {/* New column for image */}
             </tr>
           </thead>
           <tbody>
@@ -1340,18 +1599,29 @@ const Purchase = () => {
                 <td>{item.deliveryDate}</td>
                 <td>{item.status}</td>
                 <td>{item.timestamp?.toDate().toString()}</td>
+                <td>
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt="Payment Proof"
+                      style={{ width: '100px', height: 'auto' }}
+                    />
+                  ) : (
+                    'Belum Unggah'
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <div className="w-[90%] mx-auto mt-10">
-        <h2 className="text-2xl font-semibold mb-5">Upload Payment Proof</h2>
+        <h2 className="text-2xl font-semibold mb-5">Unggah Bukti Pembayaran</h2>
         <div className="mb-5 text-lg">No. Rekening: 59796486447</div>
         <form onSubmit={handleUploadPayment}>
           <div className="py-4">
             <div className="flex flex-col gap-3 mb-3">
-              <label htmlFor="image">Payment Proof Image</label>
+              <label htmlFor="image">Foto Bukti Pembayaran</label>
               <input
                 type="file"
                 name="image"
@@ -1368,28 +1638,27 @@ const Purchase = () => {
               ) : (
                 percentage === 100 && (
                   <div className="text-green-500 font-semibold">
-                    Upload Completed
+                    Unggah Berhasil
                   </div>
                 )
               )}
             </div>
           </div>
-          {/* Tampilkan item yang dipilih di sini */}
           {selectedItems.length > 0 && (
             <div className="mb-5">
-              <h3 className="text-xl font-semibold mb-2">Selected Items:</h3>
+              <h3 className="text-xl font-semibold mb-2">Pilihan Pesanan:</h3>
               <ul>
                 {selectedItems.map((itemId) => {
                   const selectedData = data.find((item) => item.id === itemId);
                   if (selectedData) {
                     return (
                       <li key={selectedData.id}>
-                        <p>Product Name: {selectedData.namaProduct}</p>
-                        <p>Delivery Address: {selectedData.address}</p>
-                        <p>Contact: {selectedData.contact}</p>
+                        <p>Nama Beras: {selectedData.namaProduct}</p>
+                        <p>Alamat Pengiriman: {selectedData.address}</p>
+                        <p>Kontak: {selectedData.contact}</p>
                         <p>Kategori Kemasan: {selectedData.packaging}</p>
                         <p>Jumlah Kemasan: {selectedData.stock}</p>
-                        <p>Tanggal Pemesanan: {selectedData.timestamp?.toDate().toString()}</p> {/* Update this line */}
+                        <p>Tanggal Pemesanan: {selectedData.timestamp?.toDate().toString()}</p>
                       </li>
                     );
                   }
@@ -1400,17 +1669,17 @@ const Purchase = () => {
           )}
           <div className="w-[100%] mx-auto mt-7">
             <p>
-              Note: Upload bukti payment ketika status berubah menjadi pembelian
+              Catatan: Unggah bukti payment ketika status berubah menjadi pembelian
               di acc,
             </p>
             <p>
               Pembayaran bisa dilakukan dengan cara transfer sesuai dengan harga
-              yang tertera di atas kolom Approved Purchases
+              yang tertera di atas
             </p>
           </div>
           <div className="modal-action">
             <button className="btn btn-primary" type="submit">
-              Upload Payment Proof
+              Unggah Bukti Pembayaran
             </button>
           </div>
         </form>
@@ -1421,5 +1690,3 @@ const Purchase = () => {
 };
 
 export default Purchase;
-
-

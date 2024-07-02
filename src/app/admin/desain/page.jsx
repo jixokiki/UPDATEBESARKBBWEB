@@ -197,7 +197,7 @@ const Product = () => {
     <div>
       <NavbarAdmin />
       <div className="p-8 md:p-24 mt-10">
-        <h2 className="text-3xl mb-3">All Products</h2>
+        {/* <h2 className="text-3xl mb-3">All Products</h2> */}
 
         <div className="flex flex-wrap gap-6">
           {/* Render sections based on itemName */}

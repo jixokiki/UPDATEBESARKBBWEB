@@ -107,7 +107,7 @@ const SignIn = () => {
           onSubmit={handleSubmit}
           className="max-w-xl mx-auto rounded-xl md:border p-8 md:shadow-lg"
         >
-          <h2 className="text-center text-2xl font-semibold mb-10">Sign In</h2>
+          <h2 className="text-center text-2xl font-semibold mb-10">Masuk</h2>
           <div className="mb-4">
             <label className="block mb-1">Email</label>
             <input
@@ -120,7 +120,7 @@ const SignIn = () => {
             {errors.email && <p className="text-red-500">{errors.email}</p>}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Password</label>
+            <label className="block mb-1">Kata Sandi</label>
             <div className="flex items-center justify-between gap-3 border border-gray-300 mt-1 p-2 w-full rounded-md focus:ring focus:ring-blue-200">
               <input
                 type={showPassword ? "text" : "password"}
@@ -153,20 +153,20 @@ const SignIn = () => {
             } transition-all duration-300 hover:bg-gray-900 hover:text-white px-6 py-4 rounded w-full`}
             disabled={isLoading}
           >
-            {isLoading ? "Signing In..." : "Sign In"}
+            {isLoading ? "Masuk..." : "Masuk"}
           </button>
           <p className="mt-10">
-            Don't have an account?{" "}
+            Tidak Mempunyai Akun?{" "}
             <Link href={"/sign-up"} className="text-indigo-500 hover:underline">
-              Sign up here
+              Daftar Di Sini
             </Link>
           </p>
-          <p className="mt-10">
+          {/* <p className="mt-10">
             please reset your password!!{" "}
             <Link href={"/reset"} className="text-indigo-500 hover:underline">
               reset
             </Link>
-          </p>
+          </p> */}
         </form>
       </div>
       <Footer/>

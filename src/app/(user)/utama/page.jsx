@@ -26,7 +26,7 @@ export default function Home() {
   }, [user, userProfile, router]);
   return (
     <div>
-      <NavbarUser />
+      <Navbar />
       <div className="relative">
         <Image
           src={"/assets/kbbLogo.jpeg"}

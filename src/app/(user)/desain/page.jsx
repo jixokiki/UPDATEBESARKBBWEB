@@ -239,6 +239,7 @@ import { doc, getDoc, addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/navigation"; // Menggunakan next/router bukan next/navigation
 import Navbar from "@/components/Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
+import NavbarUser from "@/components/NavbarUser";
 
 const UserProfile = () => {
   const router = useRouter();
@@ -399,15 +400,15 @@ const UserProfile = () => {
 
   return (
     <div className="mt-10">
-      <Navbar />
+      <NavbarUser />
       <div className="py-24">
         <form
           onSubmit={handleSubmit}
           className="max-w-xl mx-auto rounded-xl md:border p-8 md:shadow-lg"
         >
-          <h2 className="text-center text-2xl font-semibold mb-10">Form Pemesanan</h2>
+          <h2 className="text-center text-2xl font-semibold mb-10">Formulir Pemesanan</h2>
           <div className="mb-4">
-            <label className="block mb-1">Full Name</label>
+            <label className="block mb-1">Nama Lengkap</label>
             <input
               type="text"
               name="fullName"
@@ -420,7 +421,7 @@ const UserProfile = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Contact</label>
+            <label className="block mb-1">Kontak</label>
             <input
               type="text"
               name="contact"
@@ -431,7 +432,7 @@ const UserProfile = () => {
             {errors.contact && <p className="text-red-500">{errors.contact}</p>}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Address</label>
+            <label className="block mb-1">Alamat Pengiriman</label>
             <input
               type="text"
               name="address"
@@ -442,14 +443,14 @@ const UserProfile = () => {
             {errors.address && <p className="text-red-500">{errors.address}</p>}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Packaging</label>
+            <label className="block mb-1">Kemasan</label>
             <select
               name="packaging"
               value={formData.packaging}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
             >
-              <option value="">Select packaging</option>
+              <option value="">Pilih Kemasan</option>
               <option value="3 Kg">3 Kg</option>
               <option value="5 Kg">5 Kg</option>
               <option value="10 Kg">10 Kg</option>
@@ -461,14 +462,14 @@ const UserProfile = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Nama Produk</label>
+            <label className="block mb-1">Nama Beras</label>
             <select
               name="namaProduct"
               value={formData.namaProduct}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
             >
-              <option value="">Select product</option>
+              <option value="">Pilih Beras</option>
               <option value="Karila Pandan Wangi Premium">Karila Pandan Wangi Premium</option>
               <option value="Karila Ramos">Karila Ramos</option>
             </select>
@@ -477,7 +478,7 @@ const UserProfile = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Stock</label>
+            <label className="block mb-1">Stok</label>
             <input
               type="number"
               name="stock"
@@ -488,7 +489,7 @@ const UserProfile = () => {
             {errors.stock && <p className="text-red-500">{errors.stock}</p>}
           </div>
           <div className="mb-4">
-            <label className="block mb-1">Delivery Date</label>
+            <label className="block mb-1">Tanggal Pengiriman</label>
             <input
               type="date"
               name="deliveryDate"
@@ -513,7 +514,7 @@ const UserProfile = () => {
             type="submit"
             className={`bg-gray-200 transition-all duration-300 hover:bg-gray-900 hover:text-white px-6 py-4 rounded w-full`}
           >
-            Request Order
+            Pesan Beras
           </button>
         </form>
       </div>

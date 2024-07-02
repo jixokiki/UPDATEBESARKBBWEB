@@ -534,20 +534,20 @@ const Purchase = () => {
     <div className="w-[100%] mx-auto mt-32">
       <NavbarAdmin />
       <div className="w-[90%] mx-auto mt-10">
-        <h2 className="text-2xl font-semibold mb-4">Status Pemesanan</h2>
+        <h2 className="text-2xl font-semibold mb-4">Pesanan</h2>
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th>Select</th>
-              <th>Product Name</th>
-              <th>Delivery Address</th>
-              <th>Contact</th>
+              <th>Pilih</th>
+              <th>Nama Beras</th>
+              <th>Alamat Pengiriman</th>
+              <th>Kontak</th>
               <th>Kategori Kemasan</th>
               <th>Jumlah Kemasan</th>
               <th>Harga</th>
               <th>Tanggal Kirim</th>
               <th>Status</th>
-              <th>Time Stamp</th>
+              <th>Tanggal Pemesanan</th>
             </tr>
           </thead>
           <tbody>
@@ -575,21 +575,21 @@ const Purchase = () => {
         </table>
       </div>
       <div className="w-[90%] mx-auto mt-10">
-        <h2 className="text-2xl font-semibold mb-5">Send To Gudang Process</h2>
+        <h2 className="text-2xl font-semibold mb-5">Proses Kirim Ke Gudang</h2>
         <form onSubmit={handleSendToGudang}>
           {/* Tampilkan item yang dipilih di sini */}
           {selectedItems.length > 0 && (
             <div className="mb-5">
-              <h3 className="text-xl font-semibold mb-2">Selected Items:</h3>
+              <h3 className="text-xl font-semibold mb-2">Pilih Pesanan:</h3>
               <ul>
                 {selectedItems.map((itemId) => {
                   const selectedData = data.find((item) => item.id === itemId);
                   if (selectedData) {
                     return (
                       <li key={selectedData.id}>
-                        <p>Product Name: {selectedData.namaProduct}</p>
-                        <p>Delivery Address: {selectedData.address}</p>
-                        <p>Contact: {selectedData.contact}</p>
+                        <p>Nama Beras: {selectedData.namaProduct}</p>
+                        <p>Alamat Pengiriman: {selectedData.address}</p>
+                        <p>Kontak: {selectedData.contact}</p>
                         <p>Kategori Kemasan: {selectedData.packaging}</p>
                         <p>Jumlah Kemasan: {selectedData.stock}</p>
                         <p>Tanggal Pemesanan: {selectedData.timestamp?.toDate().toString()}</p>
@@ -603,7 +603,7 @@ const Purchase = () => {
           )}
           <div className="modal-action">
             <button className="btn btn-primary" type="submit">
-              Send To Gudang
+              Kirim Ke Gudang
             </button>
           </div>
         </form>

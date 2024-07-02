@@ -25,7 +25,7 @@ const NavbarAdmin = () => {
               href={"/admin"}
               className="px-4 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
             >
-              Dashboard
+              Halaman Utama
             </Link>
           </li>
           <li className="md:mr-3">
@@ -41,7 +41,7 @@ const NavbarAdmin = () => {
               href={"/admin/desain"}
               className="px-4 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
             >
-              Price List
+              Harga Beras
             </Link>
           </li>
           <li className="md:mr-3">
@@ -49,7 +49,7 @@ const NavbarAdmin = () => {
               href={"/admin/payments"}
               className="px-4 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
             >
-              Bukti Payment
+              Bukti Pembayaran
             </Link>
           </li>
           {/* <li className="md:mr-3">
@@ -82,7 +82,7 @@ const NavbarAdmin = () => {
               onClick={handleLogout}
               className="px-4 py-3 transition-all duration-500 bg-teal-500 text-white hover:bg-teal-800 rounded hover:text-white"
             >
-              Logout
+              Keluar
             </Link>
           </li>
         </ul>

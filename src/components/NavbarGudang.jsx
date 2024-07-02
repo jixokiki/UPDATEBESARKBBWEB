@@ -23,9 +23,9 @@ const NavbarGudang = () => {
           <li className="md:mr-3">
             <Link
               href={"/gudang"}
-              className="px-14 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
+              className="px-4 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
             >
-              Dashboard
+              Halaman Utama
             </Link>
           </li>
           <li className="md:mr-3">
@@ -41,7 +41,7 @@ const NavbarGudang = () => {
               href={"/gudang/payments"}
               className="px-14 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
             >
-              Bukti Payment
+              Bukti Pembayaran
             </Link>
           </li>
           <li className="md:mr-3">
@@ -49,7 +49,7 @@ const NavbarGudang = () => {
               href={"/gudang/products"}
               className="px-14 py-3  transition-all duration-300 hover:bg-teal-500 hover:text-white rounded"
             >
-              Stock Beras
+              Stok Beras
             </Link>
           </li>
           {/* <li className="md:mr-3">
@@ -74,7 +74,7 @@ const NavbarGudang = () => {
               onClick={handleLogout}
               className="px-10 py-3 transition-all duration-500 bg-teal-500 text-white hover:bg-teal-800 rounded hover:text-white"
             >
-              Logout
+              Keluar
             </Link>
           </li>
         </ul>

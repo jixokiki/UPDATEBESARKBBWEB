@@ -55,6 +55,7 @@ import CardItem6 from "@/components/CardItem6";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import NavbarGudang from "@/components/NavbarGudang";
+import NavbarUser from "@/components/NavbarUser";
 import { db } from "@/firebase/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useRouter } from "next/navigation";
@@ -84,9 +85,9 @@ const Product = () => {
 
   return (
     <div>
-      <Navbar />
+      <NavbarUser />
       <div className="p-8 md:p-24 mt-10">
-        <h2 className="text-3xl mb-3">All Products</h2>
+        {/* <h2 className="text-3xl mb-3">All Products</h2> */}
 
         <div className="flex flex-wrap gap-6">
           {/* Render sections based on itemName */}

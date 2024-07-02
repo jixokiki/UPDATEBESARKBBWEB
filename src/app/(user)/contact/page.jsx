@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import Footer from "@/components/Footer";
 import useAuth from "@/app/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import NavbarUser from "@/components/NavbarUser";
 
 const Contact = () => {
   const { user, userProfile } = useAuth();
@@ -69,7 +70,7 @@ const Contact = () => {
 
   return (
     <div>
-      <Navbar />
+      <NavbarUser />
       <div className="relative">
         <Image
           src={"/assets/BG3.jpg"}
